@@ -7,8 +7,8 @@ import {revalidatePath} from "next/cache";
 export const createAppointment = async (appointment: CreateAppointmentParams) => {
     try {
         const newAppointment = await databases.createDocument(
-            process.env.DATABASE_ID!,
-            process.env.APPOINTMENT_COLLECTION_ID!,
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID!,
             ID.unique(),
             {
                 ...appointment,
@@ -23,8 +23,8 @@ export const createAppointment = async (appointment: CreateAppointmentParams) =>
 export const getAppointment = async (appointmentId: string) => {
     try {
         const newAppointment = await databases.getDocument(
-            process.env.DATABASE_ID!,
-            process.env.APPOINTMENT_COLLECTION_ID!,
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID!,
             appointmentId
         )
         return parseStringify(newAppointment);
@@ -37,9 +37,9 @@ export const getAppointment = async (appointmentId: string) => {
 export const getRecentAppointments = async () => {
     try {
         const appointments = await databases.listDocuments(
-            process.env.DATABASE_ID!,
-            process.env.APPOINTMENT_COLLECTION_ID!,
-            [Query.orderDesc("$createdAt"), Query.limit(100)]
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID!,
+            [Query.orderDesc("$createdAt"), Query.limit(1000)]
         );
         const counts = appointments.documents
             .reduce((counts, doc) => {
@@ -65,8 +65,8 @@ export const getRecentAppointments = async () => {
 export const updateAppointment = async ({appointmentId, userId, appointment, type}: UpdateAppointmentParams) => {
     try {
         const updatedAppointment = await databases.updateDocument(
-            process.env.DATABASE_ID!,
-            process.env.APPOINTMENT_COLLECTION_ID!,
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID!,
             appointmentId,
             appointment
         );

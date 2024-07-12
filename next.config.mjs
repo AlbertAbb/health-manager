@@ -1,14 +1,6 @@
 import {withSentryConfig} from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    env: {
-        PROJECT_ID: "668e66460027825557a8",
-        API_KEY: "85596e9f88c73c688843575e4a27a5a5dda8a3e48c567924a81900fbad9e58d4efa776db324649a1bc51920fe6a681f7928f5281873fed48ca2f08d1cad291ce5035ea73a725380ac7e033493619ec4ba7f0607ba6ea6b57c554edc761f464f80448c4876b8da31af0391a0431e36020d41034dd90a1902e4e58e42d7e2fd7d6",
-        DATABASE_ID: "668e66c40012e69b2ca7",
-        PATIENT_COLLECTION_ID:"668e66dc00199f70022c",
-        DOCTOR_COLLECTION_ID: "668e66f500241a36ef5f",
-        APPOINTMENT_COLLECTION_ID: "668e670d0008cd3c525a"
-    }
 };
 
 export default withSentryConfig(nextConfig, {

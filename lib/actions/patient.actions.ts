@@ -45,8 +45,8 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
             file = await storage.createFile(process.env.NEXT_PUBLIC_BUCKET_ID!, ID.unique(), inputFile);
         }
         const newPatient = await databases.createDocument(
-            process.env.DATABASE_ID!,
-            process.env.PATIENT_COLLECTION_ID!,
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
             ID.unique(),
             {
                 identificationDocumentId: file?.$id || null,
@@ -64,8 +64,8 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
 export const getPatient = async (userId: string) => {
     try {
         const patients = await databases.listDocuments(
-            process.env.DATABASE_ID!,
-            process.env.PATIENT_COLLECTION_ID!,
+            process.env.NEXT_PUBLIC_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
             [Query.equal("userId", userId)])
         return parseStringify(patients.documents[0]);
 
