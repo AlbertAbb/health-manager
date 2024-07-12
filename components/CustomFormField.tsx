@@ -4,8 +4,8 @@ import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/compon
 import {Control} from "react-hook-form";
 import {Input} from "@/components/ui/input";
 import Image from "next/image";
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import "react-phone-number-input/style.css"
+import PhoneInput from "react-phone-number-input"
 import {E164Number} from "libphonenumber-js";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"

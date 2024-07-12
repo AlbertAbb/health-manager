@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Link from "next/link";
 import Image from "next/image"
 import {getAppointment} from "@/lib/actions/appointment.actions";
@@ -38,7 +38,7 @@ const Success = async ({params: {userId}, searchParams}: SearchParamProps) => {
                         Your <span className={"text-green-400"}>appointment request</span> has been successfully
                         submitted
                     </h2>
-                    <p>We'll be in touch shortly to confirm.</p>
+                    <p>We&apos;ll be in touch shortly to confirm.</p>
                 </section>
                 <section className={"request-details"}>
                     <p>Requested appointment details:</p>
