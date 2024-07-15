@@ -5,7 +5,6 @@ import {parseStringify} from "@/lib/utils";
 import {InputFile} from "node-appwrite/file";
 
 export const createUser = async (user: CreateUserParams) => {
-    console.log("creating user...");
     try {
         return await users.create(
             ID.unique(),

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import {z} from "zod";
 
 export const UserFormValidation = z.object({
     name: z
@@ -116,3 +116,20 @@ export function getAppointmentSchema(type: string) {
             return ScheduleAppointmentSchema;
     }
 }
+
+// TODO --> Add better validation for password, with characters and such
+export const LoginFormValidation = z.object({
+    name: z
+        .string()
+        .min(2, "Name must be at least 2 characters")
+        .max(50, "Name must be at most 50 characters"),
+    email: z.string().email("Invalid email address"),
+    phone: z
+        .string()
+        .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirm: z.string().min(8, "Password must be at least 8 characters")
+}).refine((data) => data.password === data.confirm, {
+    message: "Passwords don't match",
+    path: ["confirm"],
+});
