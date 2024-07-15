@@ -1,5 +1,5 @@
 "use client";
-import React, {ReactNode} from "react";
+import React, {ReactNode, useState} from "react";
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Control} from "react-hook-form";
 import {Input} from "@/components/ui/input";
@@ -21,7 +21,8 @@ export enum FORM_FIELD_TYPES {
     PHONE_INPUT = "phoneInput",
     TEXTAREA = "textarea",
     CHECKBOX = "checkbox",
-    SKELETON = "skeleton"
+    SKELETON = "skeleton",
+    PASSWORD = "password"
 }
 
 interface CustomFormFieldProps {
@@ -135,6 +136,30 @@ const RenderField = ({field, props}: { field: any, props: CustomFormFieldProps }
 
 
             </FormControl>
+        case FORM_FIELD_TYPES.PASSWORD:
+            const [type, setType] = useState("password");
+            return <div className={"flex rounded-md border border-dark-500 bg-dark-400"}>
+                    {props.iconSrc && (
+                        <Image
+                            src={props.iconSrc}
+                            width={24}
+                            height={24}
+                            alt={props.iconAlt || "Icon"}
+                            className={"ml-2"}
+                            onClick={() => {
+                                type === "password" ? setType("text") : setType("password");
+                            }}
+                        />
+                    )}
+                <FormControl>
+                    <Input
+                        placeholder={props.placeholder}
+                        {...field}
+                        type={type}
+                        className={"shad-input border-0"}
+                    />
+                </FormControl>
+            </div>
         default:
             console.error(`This type of field :"${props.fieldType}" does not exist`)
     }
